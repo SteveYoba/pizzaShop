@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import propTypes from 'prop-types'
 
 function Button(props) {
     return (
@@ -11,6 +12,11 @@ function Button(props) {
             </button>
         </div>
     )
+}
+
+Button.propTypes = {
+    cart: propTypes.bool,
+    onClick: propTypes.func,
 }
 
 export default Button
