@@ -1,11 +1,8 @@
-import { useState } from 'react'
-import { Button } from './'
+import { Button } from '.'
 import logo from '../img/pizza-logo.svg'
 import { Link } from 'react-router-dom'
 
 function Header() {
-    let [count, setCount] = useState(1)
-    let [price, setPrice] = useState(20)
 
     return (
         <div className="header">
@@ -22,7 +19,7 @@ function Header() {
                 <div className="header__cart">
                     <Link to='/cart'>
                         <Button cart>
-                            <span>{price} ₽</span>
+                            <span>20 ₽</span>
                             <div className="button__delimiter"></div>
                             <svg
                                 width="18"
@@ -53,7 +50,7 @@ function Header() {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            <span>{count}</span>
+                            <span>1</span>
                         </Button>
                     </Link>
                 </div>

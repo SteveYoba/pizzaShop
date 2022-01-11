@@ -1,8 +1,7 @@
 import classNames from 'classnames'
-import propTypes from 'prop-types'
 import React, { useState } from 'react'
 
-function PizzaBlock({ name, price, imageUrl, types, sizes }) {
+const PizzaBlock = ({ name, price, imageUrl, types, sizes }) =>{
     const allType = ['тонкое', 'традиционное']
     const allSize = [26, 30, 40]
 
@@ -70,17 +69,5 @@ function PizzaBlock({ name, price, imageUrl, types, sizes }) {
     )
 }
 
-PizzaBlock.prototype = {
-    name: propTypes.string.isRequired, //isRequired проверяет ещё undef и null
-    imageUrl: propTypes.string.isRequired,
-    price: propTypes.number.isRequired,
-    types: propTypes.arrayOf([propTypes.number]), //массив только чисел
-    sizes: propTypes.arrayOf([propTypes.number]).isRequired,
-}
-
-PizzaBlock.defaultProps = {
-    types: [],
-    price: 0,
-}
 
 export default PizzaBlock
