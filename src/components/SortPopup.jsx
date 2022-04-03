@@ -2,7 +2,7 @@ import React from 'react'
 
 import arrowTop from '../img/arrow-top.svg'
 
-const SortPopup = ({items}) => {
+const SortPopup = React.memo (({items}) => {
     const sortRef = React.useRef()
     const [visibleToggle, setvisibleToggle] = React.useState(false)
     const [activeItem, setActiveItem] = React.useState(0)
@@ -51,6 +51,6 @@ const SortPopup = ({items}) => {
             }
         </div>
     )
-}
+})
 
 export default SortPopup

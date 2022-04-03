@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { useState } from 'react'
 
-const PizzaBlock = ({ name, price, imageUrl, types, sizes }) =>{
+const PizzaBlock = ({ name, price, imageUrl, types, sizes, isLoading }) =>{
     const allType = ['тонкое', 'традиционное']
     const allSize = [26, 30, 40]
 
