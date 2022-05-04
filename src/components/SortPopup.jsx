@@ -2,11 +2,10 @@ import React from 'react'
 
 import arrowTop from '../img/arrow-top.svg'
 
-const SortPopup = React.memo (({items}) => {
+const SortPopup = React.memo (({items, activeSortType, onClickSortType}) => {
     const sortRef = React.useRef()
     const [visibleToggle, setvisibleToggle] = React.useState(false)
-    const [activeItem, setActiveItem] = React.useState(0)
-
+    
     const handleMouse = (e) => {
         const path = e.path || (e.composedPath && e.composedPath());
         if (!path.includes(sortRef.current)) {
@@ -14,10 +13,16 @@ const SortPopup = React.memo (({items}) => {
         }
     }
 
-    const toggleVisiblePopup = (index = activeItem) => {
+    const toggleVisiblePopup = () => {
         setvisibleToggle(!visibleToggle)
-        setActiveItem(index)
     }
+
+    const onSelectItem = (index) => {
+        if (onClickSortType) {
+          onClickSortType(index);
+        }
+        setvisibleToggle(false);
+    };
 
     React.useEffect(() => {
         document.body.addEventListener('click', handleMouse)
@@ -30,18 +35,18 @@ const SortPopup = React.memo (({items}) => {
                 <img src={arrowTop} alt='^' 
                     className={visibleToggle ? 'rotated' : ''}/>
                 <b>Сортировка по:</b>
-                <span onClick={() => toggleVisiblePopup()}>
-                    {items[activeItem].name}
+                <span onClick={toggleVisiblePopup}>
+                    {items.find((obj)=>obj.type === activeSortType).name}
                 </span>
             </div>
             {visibleToggle &&
                 <div className="sort__popup">
                     <ul>
                         {items.map((obj, index) =>
-                            <li className={index === activeItem ? 'active' : ''}
+                            <li className={activeSortType===obj.type ? 'active' : ''}
                                 key={`${obj.type}_${index}`}
                                 onClick={() => {
-                                    toggleVisiblePopup(index)
+                                    onSelectItem(obj.type)
                                 }}>
                                 {obj.name}
                             </li>
