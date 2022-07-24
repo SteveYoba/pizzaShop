@@ -2,7 +2,7 @@ import {get} from 'axios'
 
 export const fetchPizzas = (sortBy, category) => dispatch => {
     dispatch(setLoaded(false))
-    get(`http://localhost:3001/pizzas?${category != null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`).then ((resp) => {
+    get(`http://localhost:3000/pizzas?${category != null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`).then ((resp) => {
         dispatch(setPizzas (resp.data))
     })
 }

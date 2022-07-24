@@ -1,13 +1,26 @@
 import classNames from 'classnames'
 import React, { useState } from 'react'
+import Button from '../Button'
 
-const PizzaBlock = ({ name, price, imageUrl, types, sizes, isLoading }) =>{
+const PizzaBlock = ({id, name, price, imageUrl, types, sizes, onClickAddPizza, addedCount}) =>{
     const allType = ['тонкое', 'традиционное']
     const allSize = [26, 30, 40]
 
     const [activeType, setActiveTypes] = useState(types[0])
-    const [activeSize, setActiveSize] = useState(sizes[0])
+    const [activeSize, setActiveSize] = useState(allSize[0])
 
+    const onAddPizza = () => {
+        const date = {
+            id,
+            name, 
+            price, 
+            type: allType[activeType], 
+            imageUrl,
+            size: activeSize,
+        }
+        onClickAddPizza(date)
+    }
+    
     return (
         <div className="pizza-block">
             <img
@@ -48,7 +61,8 @@ const PizzaBlock = ({ name, price, imageUrl, types, sizes, isLoading }) =>{
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {price} ₽</div>
-                <div className="button button--outline button--add">
+                <Button onClick = {onAddPizza} 
+                        className="button--add" outline>
                     <svg
                         width="12"
                         height="12"
@@ -62,8 +76,8 @@ const PizzaBlock = ({ name, price, imageUrl, types, sizes, isLoading }) =>{
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
-                </div>
+                    {addedCount && <i>{addedCount}</i>}
+                </Button>
             </div>
         </div>
     )

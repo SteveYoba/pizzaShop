@@ -1,14 +1,14 @@
 import classNames from 'classnames'
 
-const Button = ({cart, children}) => {
+const Button = ({ onClick, className, outline, children }) => {
     return (
-        <div>
-            <button className={classNames ('button', {
-                        "button--cart": cart,
-                    })}>
-                {children}
-            </button>
-        </div>
+        <button
+            onClick={onClick}
+            className={classNames('button', className, {
+                'button--outline': outline,
+            })}>
+            {children}
+        </button>
     )
 }
 
